@@ -137,7 +137,6 @@
 import PRSelector from "../components/PRSelector";
 import BarChart from "../components/chartjs/BarChart.vue";
 import { GET_REPO } from "../graphql/queries.js";
-import { Parser } from "json2csv";
 
 import {
   matrizConteoPR,
@@ -233,14 +232,20 @@ export default {
     },
     csvExport() {
       //Creo el archivo CSV
+      const { Parser } = require('json2csv');
       const fields = ["Participante", "Comentario", "Fecha"];
-
-      const json2csvParser = new Parser({ fields });
-      let chat = getPRChat(
+      const chat = getPRChat(
         this.repository.pullRequest.participants.totalCount,
         this.repository.pullRequest
       );
-      const csv = json2csvParser.parse(chat);
+      const csv = '';
+      try {
+        const json2csvParser = new Parser({ fields });
+        csv = json2csvParser.parse(chat);
+      } catch (err) {
+        console.error(err);
+        this.showSnackbar("Error al generar el archivo csv", "error", 8000);
+      }
       let nombreArchivo = "Chat - " + this.repository.pullRequest.title;
       //Exporto ahora el archivo CSV
       const exportName = nombreArchivo + ".csv" || "chatPR.csv";

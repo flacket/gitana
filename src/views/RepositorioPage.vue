@@ -197,7 +197,6 @@
 <script>
 import PRSelector from "../components/PRSelector.vue";
 import { GET_REPOS, REPOSITORY_PRS, ORG_MEMBERS } from "../graphql/queries.js";
-import { Parser } from "json2csv";
 import {
   matrizConteoPR,
   cohesionFormula,
@@ -354,6 +353,8 @@ export default {
     },
     csvExport() {
       //Creo el archivo CSV
+      const { Parser } = require('json2csv');
+
       const fields = [
         "PR",
         "cohesionGrupal",
@@ -368,8 +369,15 @@ export default {
         "sizePR",
         "estado",
       ];
-      const json2csvParser = new Parser({ fields });
-      const csv = json2csvParser.parse(this.estadisticas);
+
+      const csv = '';
+      try {
+        const json2csvParser = new Parser({ fields });
+        csv = json2csvParser.parse(this.estadisticas);
+      } catch (err) {
+        console.error(err);
+        this.showSnackbar("Error al generar el archivo csv", "error", 8000);
+      }
       //Exporto ahora el archivo CSV
       const exportName = this.search.owner + " - " + this.search.name + 
       " - informePRs.csv" || "export.csv";

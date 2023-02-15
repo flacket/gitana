@@ -9,8 +9,12 @@
     "lint": "eslint . --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@json2csv/plainjs": "^6.1.2",
     "@mdi/font": "7.0.96",
     "core-js": "^3.8.3",
+    "doc-similarity": "^0.0.1",
+    "moment": "^2.29.4",
+    "polarity": "^4.0.1",
     "roboto-fontface": "*",
     "vue": "^3.2.13",
     "vue-router": "^4.0.0",

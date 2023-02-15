@@ -106,7 +106,6 @@
 <script>
 import PRSelector from "../components/PRSelector.vue";
 import { DOWN_REPOS, REPOSITORY_PRS, USER_STATS } from "../graphql/queries.js";
-import { Parser } from "json2csv";
 import {
   cohesionFormula,
   colaboracionFormula,
@@ -241,7 +240,9 @@ export default {
     },
     csvExport() {
       //Creo el archivo CSV
-      let header = [
+      const { Parser } = require('json2csv');
+
+      const header = [
         "RepoTotalFollowers",
         "RepoTotalStargazers",
         "RepoTotalWatchers",
@@ -261,8 +262,15 @@ export default {
         "Rocket",
         "Eyes",
       ];
-      const json2csvParser = new Parser({header});
-      const csv = json2csvParser.parse(this.repoListComments);
+
+      const csv = '';
+      try {
+        const json2csvParser = new Parser({ header });
+        csv = json2csvParser.parse(this.repoListComments);
+      } catch (err) {
+        console.error(err);
+        this.showSnackbar("Error al generar el archivo csv", "error", 8000);
+      }
       //Exporto ahora el archivo CSV
       const exportName = this.search.owner + " - " + this.search.name + ".csv" || "export.csv";
       const blob = new Blob([csv], { type: "text/csv;charset=unicode;" });
