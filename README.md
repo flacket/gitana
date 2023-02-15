@@ -1,57 +1,40 @@
-# base
+# githubanalytic
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1810fd53-0923-4007-9606-6f3471fa4a65/deploy-status)](https://app.netlify.com/sites/gitana/deploys)
 
-## Project setup
 
-```
-# yarn
-yarn
+## Recommended IDE Setup
 
-# npm
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+## Project Setup
+
+```sh
 npm install
-
-# pnpm
-pnpm install
 ```
 
-### Compiles and hot-reloads for development
+### Compile and Hot-Reload for Development
 
-```
-# yarn
-yarn dev
-
-# npm
+```sh
 npm run dev
-
-# pnpm
-pnpm dev
 ```
 
-### Compiles and minifies for production
+### Compile and Minify for Production
 
-```
-# yarn
-yarn build
-
-# npm
+```sh
 npm run build
-
-# pnpm
-pnpm build
 ```
 
-### Lints and fixes files
+### Lint and fixes files
 
-```
-# yarn
-yarn lint
-
-# npm
+```sh
 npm run lint
+```
 
-# pnpm
-pnpm lint
+
+### Run your tests
+```
+npm run test
 ```
 
 ### Customize configuration
-
 See [Configuration Reference](https://vitejs.dev/config/).
